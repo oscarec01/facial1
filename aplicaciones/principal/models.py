@@ -12,6 +12,9 @@ class Persona(models.Model):
     resultado_fac = models.CharField(max_length=20)
     fecha = models.DateField()
 
+    def __str__(self):
+        return self.nombres
+
 class Usuarios(models.Model):
     id = models.AutoField(primary_key=True)
     tipo_dni = models.IntegerField()
@@ -21,13 +24,25 @@ class Usuarios(models.Model):
     contrasenia = models.CharField(max_length=200)
     estado = models.IntegerField()
 
+
+    def __str__(self):
+        return self.nombres
+
 class Tiposdni(models.Model):
     id = models.AutoField(primary_key=True)
     tipodni = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.tipodni
+
 class Estado(models.Model):
     id = models.AutoField(primary_key=True)
     estado = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.estado
+
+
 
 
 
