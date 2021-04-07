@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuario</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="">
+            <h3>Usuarios</h3>
+        </div>
+        <div class="justify-content-center">
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Usuarios: {{no_usuarios}}</label>
+                </div>
+                <div class="col-6 m-auto clearfix">
+                    <a href="nuevo_usuario" class="btn btn-primary float-right">Crear</a>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>tipo_dni</th>
+                        <th>dni</th>
+                        <th>nombres</th>
+                        <th>usuario</th>
+                        <th>estado</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{usuario.id}}</td>
+                        <td>{{usuario.tipo_dni}}</td>
+                        <td>{{usuario.dni}}</td>
+                        <td>{{usuario.nombres}}</td>
+                        <td>{{usuario.usuario}}</td>
+                        <td>{{usuario.estado}}</td>
+                        <td>
+                            <a href="editar_usuario/{{usuario.id}}" class="btn btn-primary">Editar</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="selUsuario({{usuario.id}})">
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Eliminación de Usuario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <input type="hidden" id="id">
+            ¿Esta seguro de eliminar el usuario?
+          </div>
+          <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" onclick="delUsuario()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        selUsuario = function(id){
+            $('#id').val(id)
+        }
+
+        delUsuario = function(){
+            var id = document.getElementById('id').value;
+            var url_actual = window.location.origin;
+            var url = url_actual + "/eliminar_usuario/" + id;
+            window.location.assign(url)
+        }
+
+
+    </script>
+</body>
+</html>
