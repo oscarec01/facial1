@@ -6,32 +6,33 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/usuarios.css">
+
 </head>
-<body>
+<body class="cuerpo">
     <div class="container">
-        <div class="">
-            <h3>Usuarios</h3>
+        <div>
+            <h2 class="text-center">Usuarios</h2>
         </div>
         <div class="justify-content-center">
             <div class="row">
-                <div class="col-sm-6">
-                    <label>Usuarios: {{no_usuarios}}</label>
+                <div class="col-sm-11">
+                    <label>Usuarios: {{no_usuarios}}</label> 
                 </div>
-                <div class="col-6 m-auto clearfix">
-                    <a href="nuevo_usuario" class="btn btn-primary float-right">Crear</a>
+                <div>
+                    <a href="nuevo_usuario" class="btn btn-primary">Crear</a>
                 </div>
             </div>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
+            <table class="table table-striped" border="2">
+                <thead class="tabla">
+                    <tr class="">
                         <th>id</th>
                         <th>tipo_dni</th>
                         <th>dni</th>
                         <th>nombres</th>
                         <th>usuario</th>
                         <th>estado</th>
-                        <th></th>
-                        <th></th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -43,10 +44,10 @@
                         <td>{{usuario.nombres}}</td>
                         <td>{{usuario.usuario}}</td>
                         <td>{{usuario.estado}}</td>
-                        <td>
+                        <td class="trasparente">
                             <a href="editar_usuario/{{usuario.id}}" class="btn btn-primary">Editar</a>
                         </td>
-                        <td>
+                        <td class="trasparente">
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="selUsuario({{usuario.id}})">
                                 Eliminar
                             </button>
