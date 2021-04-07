@@ -1,5 +1,12 @@
 from django.db import models
 
+class Tiposdni(models.Model):
+    id = models.AutoField(primary_key=True)
+    tipodni = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.tipodni
+
 class Persona(models.Model):
     id = models.AutoField(primary_key=True)
     tipo_dni = models.ForeignKey(Tiposdni, on_delete=models.PROTECT, null=False)
@@ -15,12 +22,7 @@ class Persona(models.Model):
     def __str__(self):
         return self.nombres
 
-class Tiposdni(models.Model):
-    id = models.AutoField(primary_key=True)
-    tipodni = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.tipodni
 
 class Estado(models.Model):
     id = models.AutoField(primary_key=True)
