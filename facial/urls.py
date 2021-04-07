@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from aplicaciones.principal.views import *
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio, name='index'),
@@ -24,6 +25,6 @@ urlpatterns = [
     path('editar_usuario/<int:id>', editar_usuario),
     path('usuarios', lista_usuarios, name="usuarios"),
     path('eliminar_usuario/<int:id>', eliminar_usuario),
-
+    path('crear_persona/', crearPersona,name='crear_persona'),
 ]
 
