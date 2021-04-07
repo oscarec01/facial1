@@ -66,3 +66,21 @@ def crearPersona(request):
             
     return render(request, 'crear_persona.html',contexto)
   
+def consulta(request):
+    no_persona = Persona.objects.count()
+    persona = Persona.objects.all()
+    return render(
+        request,
+        'consulta.html',
+        {
+            'no_persona': no_persona,
+            'persona': persona
+        }
+    )
+
+def ver_caso(request, id):
+    dato = get_object_or_404(Persona, pk=id)
+    dato= id
+    consulta = Persona.objects.filter(id=dato)
+    return render(request, 'ver_caso.html', {'consulta': consulta})
+    

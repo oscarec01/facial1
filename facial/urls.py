@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from aplicaciones.principal.views import *
+from . import settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns = [
@@ -26,5 +29,10 @@ urlpatterns = [
     path('usuarios', lista_usuarios, name="usuarios"),
     path('eliminar_usuario/<int:id>', eliminar_usuario),
     path('crear_persona/', crearPersona,name='crear_persona'),
+    path('consulta/', consulta,name='consulta'),
+    path('ver_caso/<int:id>', ver_caso),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
