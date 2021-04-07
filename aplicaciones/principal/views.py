@@ -6,6 +6,18 @@ def inicio(request):
     return render(request, 'index.html')
 
 # Usuarios
+def lista_usuarios(request):
+    no_usuarios = Usuarios.objects.count()
+    usuarios = Usuarios.objects.all()
+    return render(
+        request,
+        'usuarios.html',
+        {
+            'no_usuarios': no_usuarios,
+            'usuarios': usuarios
+        }
+    )
+
 def nuevo_usuario(request):
     if request.method == "POST":
         formaUsuario = UsuarioForm(request.POST)
@@ -27,3 +39,9 @@ def editar_usuario(request, id):
     else:
         formaUsuario = UsuarioForm(instance=usuario)
     return render(request, 'editar_usuario.html', {'formaUsuario': formaUsuario})
+
+def eliminar_usuario(request, id):
+    usuario = get_object_or_404(Usuarios, pk=id)
+    if usuario:
+        usuario.delete()
+    return redirect('usuarios')
