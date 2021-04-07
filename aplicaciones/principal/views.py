@@ -23,7 +23,7 @@ def nuevo_usuario(request):
         formaUsuario = UsuarioForm(request.POST)
         if formaUsuario.is_valid():
             formaUsuario.save()
-            return redirect('index')
+            return redirect('usuarios')
     else:
         formaUsuario = UsuarioForm()
     return render(request, 'nuevo_usuario.html', {'formaUsuario': formaUsuario})
@@ -35,7 +35,7 @@ def editar_usuario(request, id):
         formaUsuario = UsuarioForm(request.POST, instance=usuario)
         if formaUsuario.is_valid():
             formaUsuario.save()
-            return redirect('index')
+            return redirect('usuarios')
     else:
         formaUsuario = UsuarioForm(instance=usuario)
     return render(request, 'editar_usuario.html', {'formaUsuario': formaUsuario})
