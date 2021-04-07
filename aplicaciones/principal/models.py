@@ -12,12 +12,12 @@ class Persona(models.Model):
     tipo_dni = models.ForeignKey(Tiposdni, on_delete=models.PROTECT, null=False)
     dni = models.IntegerField()
     nombres = models.CharField(max_length=200)
-    tel = models.IntegerField()
+    tel = models.BigIntegerField()
     correo = models.CharField(max_length=300)
     url_selfi = models.CharField(max_length=5000)
     url_documento = models.CharField(max_length=5000)
     resultado_fac = models.CharField(max_length=20)
-    fecha = models.DateField()
+    fecha = models.DateField(null=False, blank=False, auto_now=True)
 
     def __str__(self):
         return self.nombres

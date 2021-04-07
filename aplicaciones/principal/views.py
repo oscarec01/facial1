@@ -37,7 +37,6 @@ def crearPersona(request):
         }
     else:
         form = PersonaForm(request.POST)
-        form = PersonaForm()
         contexto={
             'form':form
         }
