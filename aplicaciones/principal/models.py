@@ -15,19 +15,6 @@ class Persona(models.Model):
     def __str__(self):
         return self.nombres
 
-class Usuarios(models.Model):
-    id = models.AutoField(primary_key=True)
-    tipo_dni = models.IntegerField()
-    dni = models.IntegerField()
-    nombres = models.CharField(max_length=200)
-    usuario = models.CharField(max_length=200)
-    contrasenia = models.CharField(max_length=200)
-    estado = models.IntegerField()
-
-
-    def __str__(self):
-        return self.nombres
-
 class Tiposdni(models.Model):
     id = models.AutoField(primary_key=True)
     tipodni = models.CharField(max_length=100)
@@ -41,6 +28,20 @@ class Estado(models.Model):
 
     def __str__(self):
         return self.estado
+
+class Usuarios(models.Model):
+    id = models.AutoField(primary_key=True)
+    tipo_dni = models.ForeignKey(Tiposdni, on_delete=models.PROTECT, null=False)
+    dni = models.IntegerField()
+    nombres = models.CharField(max_length=200)
+    usuario = models.CharField(max_length=200)
+    contrasenia = models.CharField(max_length=200)
+    estado = models.ForeignKey(Estado, on_delete=models.PROTECT, null=False, default=1)
+
+
+    def __str__(self):
+        return self.nombres
+
 
 
 
