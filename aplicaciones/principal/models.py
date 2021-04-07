@@ -14,8 +14,8 @@ class Persona(models.Model):
     nombres = models.CharField(max_length=200)
     tel = models.BigIntegerField()
     correo = models.CharField(max_length=300)
-    url_selfi = models.CharField(max_length=5000)
-    url_documento = models.CharField(max_length=5000)
+    url_selfi = models.ImageField(upload_to='images/selfie/', default='images/selfie/no-img.jpg')
+    url_documento = models.ImageField(upload_to='images/doc/', default='images/doc/no-img.jpg')
     resultado_fac = models.CharField(max_length=20)
     fecha = models.DateField(null=False, blank=False, auto_now=True)
 
