@@ -2,7 +2,7 @@ from django.db import models
 
 class Persona(models.Model):
     id = models.AutoField(primary_key=True)
-    tipo_dni = models.IntegerField()
+    tipo_dni = models.ForeignKey(Tiposdni, on_delete=models.PROTECT, null=False)
     dni = models.IntegerField()
     nombres = models.CharField(max_length=200)
     tel = models.IntegerField()
