@@ -36,12 +36,13 @@ def crearPersona(request):
             'form':form
         }
     else:
-        form = PersonaForm(request.POST)
+        form = PersonaForm(request.POST, request.FILES)
         contexto={
             'form':form
         }
         if form.is_valid():
             form.save()
+            print("Image uploaded succesfully!")
             return redirect('index')
             
     return render(request, 'crear_persona.html',contexto)
