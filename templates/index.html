@@ -13,12 +13,13 @@
         <img src="img/cara.jpg" class="card-img">
             <div class="card-img-overlay row justify-content-center">
                 <div class="row text-center justify-content-center align-center">
-                    <h1 class="title text-center text-white col-sm-6">BIENVENIDOS AL SISTEMA DE RECONOCIMETO FACIAL</h1>
+                    <h1 class="title text-center col-sm-6">BIENVENIDOS AL SISTEMA DE RECONOCIMETO FACIAL {{ user.username | upper }}</h1>
                         <div class="row mb-3">
                             <div class="col-0 ">
                                 <a href="crear_persona"><button class="btn btn-primary" type="button">Crear Consulta</button></a>
                                 <a href="usuarios"><button class="btn btn-primary">Usuario</button></a>
                                 <a href="consulta"><button class="btn btn-primary">Consulta</button></a>
+                                <a href="logout"><button class="btn btn-primary">Logout</button></a>
                             </div>
                         </div>
                 </div>

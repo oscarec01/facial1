@@ -1,4 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.views import (
+    LoginView,
+)
+from django.contrib.auth import logout
 from .models import Persona, Usuarios, Tiposdni, Estado
 from .forms import UsuarioForm, PersonaForm
 
@@ -17,6 +21,23 @@ def lista_usuarios(request):
             'usuarios': usuarios
         }
     )
+
+
+def prueba(request):
+    return render(request, 'prueba.html')
+
+
+def header(request):
+    return render(request, 'include/header.html')
+
+
+def login(LoginView):
+    template_name = 'accounts/login.html'
+
+
+def logout(request):
+    logout(request)
+
 
 def nuevo_usuario(request):
     if request.method == "POST":
@@ -83,4 +104,3 @@ def ver_caso(request, id):
     dato= id
     consulta = Persona.objects.filter(id=dato)
     return render(request, 'ver_caso.html', {'consulta': consulta})
-    
