@@ -126,7 +126,7 @@ LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 STATIC_URL = '/static/'
 STATIC_ROOT = ''
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'facial1/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

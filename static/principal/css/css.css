@@ -1,0 +1,11 @@
+.red i {
+   color: rgba(190, 13, 13, 0.918);
+   font-size: 30px;
+   padding: 5px;
+}
+
+.yellow i {
+   color: rgba(152, 192, 20, 0.918);
+   font-size: 30px;
+   padding: 5px;
+}

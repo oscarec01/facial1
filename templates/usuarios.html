@@ -1,99 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<!doctype html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Usuario</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/usuarios.css">
-
+	{% include "include/header.html" %}
 </head>
-<body class="cuerpo">
-    <div class="container">
-        <div>
-            <h2 class="text-center">Usuarios</h2>
-        </div>
-        <div class="justify-content-center">
-            <div class="row">
-                <div class="col-sm-11">
-                    <label>Usuarios: {{no_usuarios}}</label> 
-                </div>
-                <div>
-                    <a href="nuevo_usuario" class="btn btn-primary">Crear</a>
-                </div>
-            </div>
-            <table class="table table-striped" border="2">
-                <thead class="tabla">
-                    <tr class="">
-                        <th>id</th>
-                        <th>tipo_dni</th>
-                        <th>dni</th>
-                        <th>nombres</th>
-                        <th>usuario</th>
-                        <th>estado</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for usuario in usuarios %}
-                    <tr>
-                        <td>{{usuario.id}}</td>
-                        <td>{{usuario.tipo_dni}}</td>
-                        <td>{{usuario.dni}}</td>
-                        <td>{{usuario.nombres}}</td>
-                        <td>{{usuario.usuario}}</td>
-                        <td>{{usuario.estado}}</td>
-                        <td class="trasparente">
-                            <a href="editar_usuario/{{usuario.id}}" class="btn btn-primary">Editar</a>
-                        </td>
-                        <td class="trasparente">
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" onclick="selUsuario({{usuario.id}})">
-                                Eliminar
-                            </button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Eliminación de Usuario</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-              <input type="hidden" id="id">
-            ¿Esta seguro de eliminar el usuario?
-          </div>
-          <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" onclick="delUsuario()">Confirmar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        selUsuario = function(id){
-            $('#id').val(id)
-        }
+<body>
 
-        delUsuario = function(){
-            var id = document.getElementById('id').value;
-            var url_actual = window.location.origin;
-            var url = url_actual + "/eliminar_usuario/" + id;
-            window.location.assign(url)
-        }
+	<!--  Panel Superior -->
+	{% include "include/panel_superior.html" %}
+	<div id="right-panel" class="right-panel">
+		<!--  Panel Izquierdo -->
+		{% include "include/panel_izquierdo.html" %}
 
-    </script>
+		<div class="content">
+			<div class="animated fadeIn">
+				<!-- Titulo -->
+				<div class="stat-content text-center">
+					<div class="text-left dib">
+						<div class="stat-heading">
+							<h2>Usuarios</h2>
+						</div>
+					</div>
+				</div>
+				<!-- /Cierre Titulo -->
+
+				<!-- Widget -->
+				<div class="row">
+					<div class="ml-5 col-lg-3 col-md-6">
+						<div class="card">
+							<div class="card-body">
+								<div class="stat-widget-five">
+									<div class="stat-icon dib flat-color-1">
+										<i class="pe-7s-users"></i>
+									</div>
+									<div class="stat-content">
+										<div class="text-left dib">
+											<div class="stat-text"><span class="count">{{no_usuarios}}</span></div>
+											<div class="stat-heading">Usuarios</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Cierre Widget -->
+
+
+				<div class="container">
+					<div class="text-center head ver1">
+						<div class="">
+							<table>
+								<thead>
+									<tr>
+										<th>id</th>
+										<th>tipo_dni</th>
+										<th>dni</th>
+										<th>nombres</th>
+										<th>usuario</th>
+										<th>estado</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for usuario in usuarios %}
+									<tr>
+										<td>{{usuario.id}}</td>
+										<td>{{usuario.tipo_dni}}</td>
+										<td>{{usuario.dni}}</td>
+										<td>{{usuario.nombres}}</td>
+										<td>{{usuario.usuario}}</td>
+										<td>{{usuario.estado}}</td>
+										<td class="trasparente">
+											<a href="editar_usuario/{{usuario.id}}" class="btn">
+												<span class="yellow">
+													<i class="fa fa-pencil-square-o"></i>
+												</span>
+											</a>
+											<button type="button" class="btn" data-toggle="modal"
+												data-target="#exampleModal" onclick="selUsuario({{usuario.id}})">
+												<span class="red">
+													<i class="pe-7s-trash"></i>
+												</span>
+											</button>
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+			</div> <!-- Cierre div animated -->
+		</div> <!-- Cierre div content -->
+		{% include "include/footer.html" %}
+	</div>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Eliminación de Usuario</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" id="id">
+					¿Esta seguro de eliminar el usuario?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-danger" onclick="delUsuario()">Confirmar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="{% static 'principal/js/jquery-3.6.0.min.js' %}"></script>
+	<script src="{% static 'principal/js/js.js' %}"></script>
 </body>
+
 </html>

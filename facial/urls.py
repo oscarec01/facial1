@@ -14,7 +14,7 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login_required(inicio), name='index'),
-    path('nuevo_usuario', nuevo_usuario),
+    path('nuevo_usuario', nuevo_usuario, name="nuevo_usuario"),
     path('editar_usuario/<int:id>', editar_usuario),
     path('usuarios', lista_usuarios, name="usuarios"),
     path('eliminar_usuario/<int:id>', eliminar_usuario),
