@@ -14,14 +14,13 @@ from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login_required(inicio), name='index'),
-    path('nuevo_usuario', nuevo_usuario, name="nuevo_usuario"),
-    path('editar_usuario/<int:id>', editar_usuario),
-    path('usuarios', lista_usuarios, name="usuarios"),
-    path('eliminar_usuario/<int:id>', eliminar_usuario),
-    path('crear_persona/', crearPersona,name='crear_persona'),
-    path('consulta/', consulta,name='consulta'),
-    path('ver_caso/<int:id>', ver_caso),
-    path('prueba', prueba),
+    path('nuevo_usuario', login_required(nuevo_usuario), name="nuevo_usuario"),
+    path('editar_usuario/<int:id>', login_required(editar_usuario)),
+    path('usuarios', login_required(lista_usuarios), name="usuarios"),
+    path('eliminar_usuario/<int:id>', login_required(eliminar_usuario)),
+    path('crear_persona/', login_required(crearPersona),name='crear_persona'),
+    path('consulta/', login_required(consulta),name='consulta'),
+    path('ver_caso/<int:id>', login_required(ver_caso)),
     path("accounts/login/", LoginView.as_view(template_name='login.html'), name='login'),
     path("logout/", LogoutView.as_view(), name="logout")
 ]
