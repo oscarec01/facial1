@@ -1,13 +1,32 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.contrib.auth.views import (
     LoginView,
 )
 from django.contrib.auth import logout
-from .models import Persona, Usuarios, Tiposdni, Estado
-from .forms import UsuarioForm, PersonaForm
+from .models import Persona, Usuarios, Usuario
+from .forms import UsuarioForm, PersonaForm, FormUser
+
 
 def inicio(request):
     return render(request, 'index.html')
+
+
+class CreateUser(CreateView):
+    model = Usuario
+    form_class = FormUser
+    template_name = 'new_user.html'
+    success_url = reverse_lazy('list_user')
+
+
+class ListUser(ListView):
+    model = Usuario
+    template_name = 'list_user.html'
+
+    def get_queryset(self):
+        return self.model.objects.filter(user_active=True)
+
 
 # Usuarios
 def lista_usuarios(request):
@@ -21,7 +40,6 @@ def lista_usuarios(request):
             'usuarios': usuarios
         }
     )
-
 
 def prueba(request):
     return render(request, 'prueba.html')
@@ -61,7 +79,7 @@ def editar_usuario(request, id):
         formaUsuario = UsuarioForm(instance=usuario)
     return render(request, 'editar_usuario.html', {'formaUsuario': formaUsuario})
 
-  
+
 def eliminar_usuario(request, id):
     usuario = get_object_or_404(Usuarios, pk=id)
     if usuario:
@@ -84,9 +102,10 @@ def crearPersona(request):
             form.save()
             print("Image uploaded succesfully!")
             return redirect('index')
-            
+
     return render(request, 'crear_persona.html',contexto)
-  
+
+
 def consulta(request):
     no_persona = Persona.objects.count()
     persona = Persona.objects.all()
@@ -98,6 +117,7 @@ def consulta(request):
             'persona': persona
         }
     )
+
 
 def ver_caso(request, id):
     dato = get_object_or_404(Persona, pk=id)

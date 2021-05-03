@@ -1,0 +1,106 @@
+{% load static %}
+<!doctype html>
+
+<head>
+	{% include "include/header.html" %}
+</head>
+
+<body>
+
+	<!--  Panel Superior -->
+	{% include "include/panel_superior.html" %}
+	<div id="right-panel" class="right-panel">
+		<!--  Panel Izquierdo -->
+		{% include "include/panel_izquierdo.html" %}
+
+		<div class="content">
+			<div class="animated fadeIn">
+				<!-- Titulo -->
+				<div class="stat-content text-center">
+					<div class="text-left dib">
+						<div class="stat-heading">
+							<h2>Usuarios</h2>
+						</div>
+					</div>
+				</div>
+				<!-- /Cierre Titulo -->
+
+				<!-- Widget -->
+				<div class="row">
+					<div class="ml-5 col-lg-3 col-md-6">
+						<div class="card">
+							<div class="card-body">
+								<div class="stat-widget-five">
+									<div class="stat-icon dib flat-color-1">
+										<i class="pe-7s-users"></i>
+									</div>
+									<div class="stat-content">
+										<div class="text-left dib">
+											<div class="stat-text"><span class="count">{{no_usuarios}}</span></div>
+											<div class="stat-heading">Usuarios</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Cierre Widget -->
+
+                {% if object_list %}
+				<div class="container">
+					<div class="text-center head ver1">
+						<div class="">
+							<table>
+								<thead>
+									<tr>
+										<th>ID</th>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th></th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for usuario in object_list %}
+									<tr>
+                                        <td>{{usuario.id}}</td>
+										<td>{{usuario.username}}</td>
+										<td>{{usuario.email}}</td>
+										<td>{{usuario.name}}</td>
+										<td>{{usuario.lastname}}</td>
+										<td class="trasparente">
+											<a href="editar_usuario/{{usuario.id}}" class="btn">
+												<span class="yellow">
+													<i class="fa fa-pencil-square-o"></i>
+												</span>
+											</a>
+											<button type="button" class="btn" data-toggle="modal"
+												data-target="#exampleModal" onclick="selUsuario({{usuario.id}})">
+												<span class="red">
+													<i class="pe-7s-trash"></i>
+												</span>
+											</button>
+										</td>
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+                {% else %}
+                <h1>No existen usuarios registrados</h1>
+                {% endif %}
+
+			</div> <!-- Cierre div animated -->
+		</div> <!-- Cierre div content -->
+		{% include "include/footer.html" %}
+	</div>
+	<script src="{% static 'principal/js/jquery-3.6.0.min.js' %}"></script>
+	<script src="{% static 'principal/js/js.js' %}"></script>
+</body>
+
+</html>

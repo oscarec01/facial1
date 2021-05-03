@@ -1,0 +1,58 @@
+{% load static %}
+<!doctype html>
+
+<head>
+	{% include "include/header.html" %}
+</head>
+
+<body>
+
+	<!--  Panel Superior -->
+	{% include "include/panel_superior.html" %}
+	<div id="right-panel" class="right-panel">
+		<!--  Panel Izquierdo -->
+		{% include "include/panel_izquierdo.html" %}
+
+		<div class="content">
+
+			<div class="animated fadeIn">
+				<!-- Titulo -->
+				<div class="stat-content text-center">
+					<div class="text-left dib">
+						<div class="stat-heading">
+							<h2>Creación de Usuarios</h2>
+						</div>
+					</div>
+				</div>
+				<!-- /Cierre Titulo -->
+
+				<div class="container">
+					<div class="text-center">
+						<div class="card-body">
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <a href="{% url 'usuarios' %}" class="btn btn-danger">Cancelar</a>
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="submit" class="btn btn-success">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+						</div>
+					</div>
+				</div>
+
+			</div> <!-- Cierre div animated -->
+		</div> <!-- Cierre div content -->
+		{% include "include/footer.html" %}
+	</div>
+	<script src="{% static 'principal/js/jquery-3.6.0.min.js' %}"></script>
+	<script src="{% static 'principal/js/js.js' %}"></script>
+</body>
+
+</html>
