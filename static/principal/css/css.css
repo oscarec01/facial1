@@ -5,7 +5,13 @@
 }
 
 .yellow i {
-   color: rgba(152, 192, 20, 0.918);
+   color: rgb(210, 210, 10);
+   font-size: 30px;
+   padding: 5px;
+}
+
+.green i {
+   color: rgba(0, 150, 0, 0.918);
    font-size: 30px;
    padding: 5px;
 }

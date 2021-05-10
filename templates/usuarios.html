@@ -124,6 +124,19 @@
 	</div>
 	<script src="{% static 'principal/js/jquery-3.6.0.min.js' %}"></script>
 	<script src="{% static 'principal/js/js.js' %}"></script>
+	<script type="text/javascript">
+        selUsuario = function(id){
+            $('#id').val(id)
+        }
+
+        delUsuario = function(){
+            var id = document.getElementById('id').value;
+            var url_actual = window.location.origin;
+            var url = url_actual + "/eliminar_usuario/" + id;
+            window.location.assign(url)
+        }
+
+    </script>
 </body>
 
 </html>

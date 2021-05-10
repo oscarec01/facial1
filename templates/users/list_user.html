@@ -1,0 +1,143 @@
+{% load static %}
+<!doctype html>
+<head>
+	{% include "include/header.html" %}
+</head>
+<body>
+<!--  Panel Superior -->
+	{% include "include/panel_superior.html" %}
+	<div id="right-panel" class="right-panel">
+		<!--  Panel Izquierdo -->
+		{% include "include/panel_izquierdo.html" %}
+        <div class="content">
+			<div class="animated fadeIn">
+
+                <!-- Titulo -->
+				<div class="stat-content text-center">
+					<div class="text-left dib">
+						<div class="stat-heading">
+							<h2>Usuarios</h2>
+						</div>
+					</div>
+				</div>
+				<!-- /Cierre Titulo -->
+
+                {% if no_users != 0 %}
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-12 col-md-offset-2">
+                                <button class="btn float-right" onclick="regUser()">
+                                    <span class="green">
+                                        <i class="fa fa-plus-square"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-stats order-table ov-h">
+                            <table id="tabla_usuarios" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Username</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Email</th>
+                                        <th>Opciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in users %}
+                                    <tr>
+                                        <td>{{ user.id }}</td>
+                                        <td>{{ user.username }}</td>
+                                        <td>{{ user.name }}</td>
+                                        <td>{{ user.lastname }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td class="trasparente">
+                                            <a href="/user/update_user/{{user.id}}" class="btn">
+                                                <span class="yellow">
+                                                    <i class="fa fa-pencil-square-o"></i>
+                                                </span>
+                                            </a>
+                                            <button type="button" class="btn" data-toggle="modal"
+                                                    data-target="#exampleModal" onclick="selUsuario({{user.id}})">
+                                                <span class="red">
+                                                    <i class="pe-7s-trash"></i>
+                                                </span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="card mt-5" style="justify-content: center;">
+                    <div class="card-body">
+                            <h3>No hay usuarios para mostrar</h3>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+        {% include "include/footer.html" %}
+    </div>
+
+    <!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Eliminación de Usuario</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" id="id">
+                    ¿Esta seguro de eliminar el usuario <b>{{user.username}}</b>?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-danger" onclick="delUsuario()">Confirmar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <script type="text/javascript">
+        selUsuario = function(id){
+            $('#id').val(id)
+        }
+
+        delUsuario = function(){
+            var id = document.getElementById('id').value;
+            var url_actual = window.location.origin;
+            var url = url_actual + "/user/delete_user/" + id;
+            window.location.assign(url)
+        }
+
+        regUser = function(){
+            var url_actual = window.location.origin;
+            var url = url_actual + "/user/new_user/";
+            window.location.assign(url)
+        }
+
+    </script>
+
+{% block extrajs %}
+    <script src="{% static 'principal/js/jquery-3.6.0.min.js' %}"></script>
+	<script src="{% static 'principal/js/js.js' %}"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="{% static 'js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/usuarios/index.js' %}"></script>
+
+{% endblock extrajs %}

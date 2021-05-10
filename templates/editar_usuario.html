@@ -26,21 +26,8 @@
                         <form method="POST">
                             <div class="form-group col-6">
                                 <table class="table table-borderless">
-                                    <!--{{formaUsuario}}-->
+                                    {{formaUsuario}}
                                 </table>
-                                <div class="justify-content-center row">
-                                    {% for field in formaUsuario %}
-                                    <div class="form-row">
-                                        <label for="formGroupExampleInput">{{field.label}}</label>
-                                        <div class="form-control">
-                                             {{field}}
-                                        </div>
-                                    </div>
-                                    <br>
-
-
-                                    {% endfor %}
-                                </div>
                                 <button type="submit" class="btn btn-button btn-outline-success btn-lg btn-block">
                                     Enviar
                                 </button>
