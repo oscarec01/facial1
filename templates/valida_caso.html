@@ -1,0 +1,52 @@
+{% load static %}
+<!doctype html>
+
+<head>
+    {% include "include/header.html" %}
+</head>
+
+<body>
+
+    <!--  Panel Superior -->
+    {% include "include/panel_superior.html" %}
+    <div id="right-panel" class="right-panel">
+        <!--  Panel Izquierdo -->
+        {% include "include/panel_izquierdo.html" %}
+
+        <div class="content">
+            <div class="animated fadeIn">
+                <form method="POST">
+                    <div class="row text-center justify-content-center align-center">
+                        <div class="mb-5">
+                            <h1>Ver Consulta</h1>
+                        </div>
+                        <div class="form-group col-6">
+                            <table class="table table-borderless">
+                                {% load static %}
+                                {% for consulta in consulta %}
+                                <tr>
+                                <tr>
+                                    <td>Foto</td>
+                                    <td><img src="../media/{{consulta.url_selfi}}" alt="foto" style="width:150px;"></td>
+                                </tr>
+                                <tr>
+                                    <td>Documento</td>
+                                    <td><img src="../media/{{consulta.url_documento}}" alt="foto" style="width:150px;">
+                                    </td>
+                                </tr>
+
+                                </tr>
+                                {% endfor %}
+                            </table>
+                            
+                        </div>
+                        {% csrf_token %}
+                    </div>
+                </form>
+            </div> <!-- Cierre div animated -->
+        </div> <!-- Cierre div content -->
+        {% include "include/footer.html" %}
+    </div>
+</body>
+
+</html>

@@ -17,6 +17,7 @@ urlpatterns = [
     path('crear_persona/', login_required(crearPersona),name='crear_persona'),
     path('consulta/', login_required(consulta),name='consulta'),
     path('ver_caso/<int:id>', login_required(ver_caso)),
+    path('valida_caso/<int:id>', login_required(valida_caso)),
     path('prueba', prueba),
     path("accounts/login/", LoginView.as_view(template_name='login.html'), name='login'),
     path("logout/", LogoutView.as_view(), name="logout")

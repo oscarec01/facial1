@@ -40,6 +40,7 @@
                                     <th>Tel</th>
                                     <th>Correo</th>
                                     <th>Resultado Facial</th>
+                                    <th>Validar Facial</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -53,6 +54,9 @@
                                     <td>{{persona.tel}}</td>
                                     <td>{{persona.correo}}</td>
                                     <td>{{persona.resultado_fac}}</td>
+                                    <td>
+                                        <a href="../valida_caso/{{persona.id}}" class="btn btn-primary">Validar</a>
+                                    </td>
                                     <td>
                                         <a href="../ver_caso/{{persona.id}}" class="btn btn-primary">Ver</a>
                                     </td>
