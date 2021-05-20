@@ -9,6 +9,21 @@ import face_recognition
 import os
 
 
+
+def cc_location():
+    cc = "C:/Users/HOMME/OneDrive/Desktop/universidad/python/django/facial/media/"
+    return cc
+
+def selfie_location():
+    selfie = "C:/Users/HOMME/OneDrive/Desktop/universidad/python/django/facial/media/"
+    return selfie
+
+
+def location(func):
+    location = func()
+    return location
+
+
 def inicio(request):
     return render(request, 'index.html')
 
@@ -62,13 +77,12 @@ def ver_caso(request, id):
 def valida_caso(request, id):
     respuesta= ""
     dato = get_object_or_404(Persona, pk=id)
-    dato= id   
-    consulta = Persona.objects.filter(id=dato)
+    dato= id  
     for e in Persona.objects.filter(id=dato):        
         cc1 = e.url_documento.name
         slef1= e.url_selfi.name
-        cc= 'C:/Users/HOMME/OneDrive/Desktop/universidad/python/django/facial/media/' + cc1
-        self='C:/Users/HOMME/OneDrive/Desktop/universidad/python/django/facial/media/' + slef1
+        cc= location(cc_location) + cc1
+        self= location(selfie_location) + slef1
         img = face_recognition.load_image_file(cc)
         try:
             Cedula1 = face_recognition.face_encodings(img)[0]
