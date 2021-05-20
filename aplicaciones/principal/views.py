@@ -8,8 +8,6 @@ from .forms import PersonaForm
 import face_recognition
 import os
 
-
-
 def cc_location():
     cc = "C:/Users/HOMME/OneDrive/Desktop/universidad/python/django/facial/media/"
     return cc
